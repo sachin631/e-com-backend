@@ -6,7 +6,10 @@ const cors=require("cors");
 require("./connection/dbConnect");
 const cookieParser=require("cookie-parser");
 const userRouter = require("./routers/user.router");
-const colors=require("colors")
+// const colors=require("colors");
+const productRouter = require("./routers/product.router");
+// const { syncIndexes } = require("mongoose");
+const orderRouter = require("./routers/order.router");
 
 
 
@@ -14,19 +17,23 @@ const colors=require("colors")
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({credentials:true}));
 
 
 //routers
+//user router
 app.use(userRouter);
-
+//product router
+app.use(productRouter);
+//orderRouter
+app.use(orderRouter);
 
 
 app.listen(PORT,()=>{
     console.log(`codeproject start at `);
 });
 
-
+module.exports = app
 
 //trying
 // class apiResponse{
@@ -65,4 +72,59 @@ app.listen(PORT,()=>{
 // const res=new apiError(400,"something work");
 // console.log(res); 
 
+// const name=[
+//     {
+//         name:"s",
+//         lname:"sa",
+//         _id:"asd",
+//         url:"asd"
+//     },
+//     {
+//         name:"m",
+//         lname:"m",
+//         _id:"m",
+//         url:"m"
+//     }
+// ];
+
+// const data=name.map(({_id,url})=>{
+//     console.log({_id,url});
+// })
+
+
+// const toatalreview=[
+//     {
+//         toatalreview2:1,
+//         name:"sachin"
+//     },
+//     {
+//         toatalreview2:2,
+//         name:"sachin"
+//     },
+//     {
+//         toatalreview2:3,
+//         name:"sachin"
+//     },
+//     {
+//         toatalreview2:3,
+//         name:"sachin"
+//     }
+// ];
+
+//acc tab tak chnage nhi hga jb tk culelem i value change na ho
+// const data=toatalreview?.reduce((acc,curelem,index)=>{
+//     curelem.toatalreview2=acc+curelem.toatalreview2
+//     // console.log(curelem);
+//     return curelem.toatalreview2
+// },0)
+// console.log(data)
+
+//new
+// const arr=[1,2,3,4];
+// const data=arr.includes(10);
+// console.log(data);
+
+//make order section for user
+
+// const { add } = require("./math");
 
